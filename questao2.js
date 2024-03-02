@@ -1,41 +1,41 @@
 class Triangulo{
     //Vértices 
-    #v1;
-    #v2;
-    #v3;
+    #a;
+    #b;
+    #c;
 
     //Método para verificar se os vértices formam um triângulo válido
-    eTriangulo(v1, v2, v3) {
-        const lado1 = v1.distancia(v2);
-        const lado2 = v2.distancia(v3);
-        const lado3 = v3.distancia(v1);
+    eTriangulo(a, b, c) {
+        const lado1 = a.distancia(b);
+        const lado2 = b.distancia(c);
+        const lado3 = c.distancia(a);
 
         return (lado1 + lado2 > lado3) && (lado2 + lado3 > lado1) && (lado3 + lado1 > lado2);
     }
 
     //Método construtor
-    constructor(v1, v2, v3) {
+    constructor(a, b, c) {
         //Verifica se os vértices formam um triângulo
-        if (!this.eTriangulo(v1, v2, v3)) {
+        if (!this.eTriangulo(a, b, c)) {
             throw new Error("Os vertices nao formam um triangulo valido.");
         }
 
-        this.#v1 = v1;
-        this.#v2 = v2;
-        this.#v3 = v3;
+        this.#a = a;
+        this.#b = b;
+        this.#c = c;
     }
 
     //getters
-    get v1(){
-        return this.#v1;
+    get a(){
+        return this.#a;
     }
 
-    get v2(){
-        return this.#v2;
+    get b(){
+        return this.#b;
     }
 
-    get v3(){
-        return this.#v3;
+    get c(){
+        return this.#c;
     }
 
 
