@@ -54,3 +54,4 @@ console.log("v2 e v3 sao: ",v2.equals(v3));
 v3.move(4,5);
 
 console.log("v2 e v3 sao: ",v2.equals(v3));
+
