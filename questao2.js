@@ -1,4 +1,4 @@
-const Vertice = require('./questao1.js');
+const Vertice = require('./questao1.js'); // Importação da classe Vertice
 
 class Triangulo{
     //Vértices 
@@ -89,4 +89,4 @@ class Triangulo{
 
 }
 
-module.exports = Triangulo;
+module.exports = Triangulo; // Exportação da classe Triângulo

@@ -42,5 +42,4 @@ class Vertice{
     }
 }
 
-module.exports = Vertice;
-
+module.exports = Vertice; // Exportação da classe Vertice
