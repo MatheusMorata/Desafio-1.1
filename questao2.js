@@ -1,4 +1,4 @@
-import {Vertice} from '/questao1.js';
+const Vertice = require('./questao1.js');
 
 class Triangulo{
     //Vértices 
@@ -41,19 +41,15 @@ class Triangulo{
     }
 
     get perimetro(){
-        const lado1 = a.distancia(b);
-        const lado2 = b.distancia(c);
-        const lado3 = c.distancia(a);
+        const lado1 = this.#a.distancia(this.#b);
+        const lado2 = this.#b.distancia(this.#c);
+        const lado3 = this.#c.distancia(this.#a);
 
         return lado1 + lado2 + lado3;
     }
 
     get area() {
-        const lado1 = a.distancia(b);
-        const lado2 = b.distancia(c);
-        const lado3 = c.distancia(a);
-
-        return (lado1 + lado2 + lado3)/2;
+        return this.perimetro/2;
     }
 
     //Métodos
@@ -92,3 +88,5 @@ class Triangulo{
     }
 
 }
+
+module.exports = Triangulo;
