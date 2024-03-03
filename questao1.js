@@ -35,9 +35,9 @@ class Vertice{
     //Método equals
     equals(outroVertice) {
         if (this.#x === outroVertice.x && this.#y === outroVertice.y){
-            return "Sao iguais"; 
+            return true; 
         }else{
-            return "Sao diferentes";
+            return false;
         }
     }
 }
