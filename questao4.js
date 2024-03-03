@@ -50,10 +50,15 @@ class Aluno {
     set p2(p2){
         this.#p2 = p2;
     }
-    
+
 }
 
 class Turma{
+    // Lista de objetos da classe aluno
+    #aluno;
+    
+    constructor(a){
+        this.#aluno = a;
+    }
     
 }
-
