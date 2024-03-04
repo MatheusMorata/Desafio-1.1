@@ -1,132 +1,88 @@
 const read = require('readline-sync');
 
-class Pessoa{
-    #nome;
-    #CPF;
-    #nascimento;
-    #renda;
-    #estado_civil;
-    #dependentes;
-
-    constructor(n,cpf,dia,mes,ano,renda,est,depen){
-        // Validações
-        this.validarEstadoCivil(est);
-        this.validarRenda(renda);
-        this.validarNome(n);
-        this.validarCPF(cpf);
-        this.validarDia(dia);
-        this.validarMes(mes);
-        this.validarAno(ano);
-        this.validarDependentes(depen);
-
-
-        this.#nome = n.toString();
-        this.#CPF = cpf;
-        if(mes > 9){
-            this.#nascimento = dia+'/'+mes+'/'+ano;
-        }else{
-            this.#nascimento = dia+'/0'+mes+'/'+ano;
-        }
-        this.#renda = renda;
-        this.#estado_civil = est.toUpperCase();
-        this.#dependentes = Number(depen);
+let nome;
+do {
+    nome = read.question("Digite o nome: ");
+    console.clear();
+    if (nome.length < 5 || /\d/.test(nome)) {
+        console.log("Erro: O nome deve ter pelo menos 5 caracteres e não deve conter números.");
     }
+} while (nome.length < 5 || /\d/.test(nome));
 
-    // GETTER
-    get nome(){
-        return this.#nome;
+let CPF;
+do {
+    CPF = read.question("Digite o CPF: ");
+    console.clear();
+    if (CPF.length !== 11 || /[a-zA-Z]/.test(CPF)) {
+        console.log("Erro: O CPF deve conter exatamente 11 dígitos e não deve conter letras.");
     }
+} while (CPF.length !== 11 || /[a-zA-Z]/.test(CPF));
 
-    get nascimento(){
-        return this.#nascimento;
+CPF = CPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+
+let dia;
+do {
+    dia = read.question("Digite o dia de nascimento: ");
+    console.clear();
+    if (isNaN(dia) || parseInt(dia) < 1 || parseInt(dia) > 30) {
+        console.log("Erro: O dia de nascimento deve ser um número entre 1 e 30.");
     }
+} while (isNaN(dia) || parseInt(dia) < 1 || parseInt(dia) > 30);
 
-    get renda(){
-        return this.#renda;
+let mes;
+do {
+    mes = read.question("Digite o mes de nascimento: ");
+    console.clear();
+    if (isNaN(mes) || parseInt(mes) < 1 || parseInt(mes) > 12) {
+        console.log("Erro: O mes de nascimento deve ser um número entre 1 e 12.");
     }
+} while (isNaN(mes) || parseInt(mes) < 1 || parseInt(mes) > 12);
 
-    get estado_civil(){
-        return this.#estado_civil;
+
+let ano;
+do {
+    ano = read.question("Digite o ano de nascimento: ");
+    console.clear();
+    if (isNaN(ano) || parseInt(ano) < 1920 || parseInt(ano) > 2024) {
+        console.log("Erro: O ano de nascimento deve ser um número entre 1920 e 2024.");
     }
+} while (isNaN(ano) || parseInt(ano) < 1920 || parseInt(ano) > 2024);
 
-    get dependentes(){
-        return this.#dependentes;
+let renda;
+do {
+    renda = read.question("Digite a renda mensal: ");
+    console.clear();
+    if (isNaN(renda) || parseFloat(renda) < 0) {
+        console.log("Erro: A renda mensal deve ser um número não negativo.");
     }
+} while (isNaN(renda) || parseFloat(renda) < 0);
+renda = parseFloat(renda).toFixed(2);
 
-    // Métodos
-    validarEstadoCivil(estado_civil) {
-        if (!estado_civil || !/^[C|S|V|D]$/i.test(estado_civil)) {
-            throw new Error("Estado civil inválido. Deve ser 'C', 'S', 'V' ou 'D' (maiúsculo ou minúsculo).");
-        }
+let estado_civ;
+do {
+    estado_civ = read.question("Digite o estado civil: ");
+    console.clear();
+    estado_civ = estado_civ.toUpperCase(); 
+    if (!['C', 'S', 'V', 'D'].includes(estado_civ)) {
+        console.log("Erro: O estado civil deve ser C, S, V ou D.");
     }
+} while (!['C', 'S', 'V', 'D'].includes(estado_civ));
 
-    validarCPF(cpf){
-        if(cpf.length != 11){
-            throw new Error("CPF deve ter 11 dígitos.");
-        }
+
+let dependentes;
+do {
+    dependentes = read.question("Digite o numero de dependentes: ");
+    console.clear();
+    if (isNaN(dependentes) || parseInt(dependentes) < 0 || parseInt(dependentes) > 10) {
+        console.log("Erro: O numero de dependentes deve ser um numero entre 0 e 10.");
     }
+} while (isNaN(dependentes) || parseInt(dependentes) < 0 || parseInt(dependentes) > 10);
 
-    validarDependentes(dep){
-        if(dep < 0 || dep > 10){
-            throw new Error("O número de dependentes deve está entre o intervalo 0 e 10.");
-        }
-    }
 
-    validarRenda(renda){
-        if(renda < 0){
-            throw new Error("Renda não pode ser negativa.");
-        }
-    }
-
-    validarNome(nome){
-        if(nome.length < 5){
-            throw new Error("Nome deve ter pelo menos 5 caracteres.");
-        }
-    }
-
-    validarDia(dia){
-        if(dia > 30 || dia <= 0){
-            throw new Error("Um mês tem apenas 30 dias");
-        }
-    }
-
-    validarMes(Mes){
-        if(Mes > 12 || Mes <= 0){
-            throw new Error("Um ano tem apenas 12 meses");
-        }
-    }
-
-    validarAno(ano){
-        if(ano > 2024 || ano <= 1900){
-            throw new Error("Somente anos dentro do intervalo de 1900 a 2024 são aceitos.");
-        }
-    }
-
-    formatarCPF() {
-        const numerosCPF = this.#CPF.replace(/\D/g, '');
-        const cpfFormatado = numerosCPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-        return cpfFormatado;
-    }
-
-}
-
-let nome = read.question("Digite o nome: ");
-let CPF = read.question("Digite o CPF: ");
-let dia = read.question("Digite o dia de nascimento: ");
-let mes = read.question("Digite o mes de nascimento: ");
-let ano = read.question("Digite o ano de nascimento: ")
-let renda = read.question("Digite a renda mensal: ");
-let estado_civ = read.question("Digite o estado civil: ");
-let dependentes = read.question("Digite o numero de dependentes: ");
-
-try{
-    const p = new Pessoa(nome,CPF,dia,mes,ano,renda,estado_civ,dependentes);
-    console.log("Nome: "+p.nome);
-    console.log("CPF: "+p.formatarCPF());
-    console.log("Data de Nascimento: "+p.nascimento);
-    console.log("Renda: R$"+p.renda);
-    console.log("Estado civil: "+p.estado_civil);
-    console.log("Dependentes: "+p.dependentes);
-}catch(error){
-    console.error(error.message);
-}
+// SAÍDA
+console.log("Nome:", nome);
+console.log("CPF:", CPF);
+console.log("Data de nascimento:", dia.padStart(2, '0') + '/' + mes.padStart(2, '0') + '/' + ano);
+console.log("Renda mensal:", renda);
+console.log("Estado civil:", estado_civ);
+console.log("Número de dependentes:", dependentes);
