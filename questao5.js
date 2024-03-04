@@ -9,15 +9,24 @@ class Pessoa{
     #dependentes;
 
     constructor(n,cpf,dia,mes,ano,renda,est,depen){
+        // Validações
         this.validarEstadoCivil(est);
         this.validarRenda(renda);
         this.validarNome(n);
         this.validarCPF(cpf);
+        this.validarDia(dia);
+        this.validarMes(mes);
+        this.validarAno(ano);
         this.validarDependentes(depen);
+
 
         this.#nome = n.toString();
         this.#CPF = cpf;
-        this.#nascimento = dia+'/'+mes+'/'+ano;
+        if(mes > 9){
+            this.#nascimento = dia+'/'+mes+'/'+ano;
+        }else{
+            this.#nascimento = dia+'/0'+mes+'/'+ano;
+        }
         this.#renda = renda;
         this.#estado_civil = est.toUpperCase();
         this.#dependentes = Number(depen);
@@ -26,6 +35,22 @@ class Pessoa{
     // GETTER
     get nome(){
         return this.#nome;
+    }
+
+    get nascimento(){
+        return this.#nascimento;
+    }
+
+    get renda(){
+        return this.#renda;
+    }
+
+    get estado_civil(){
+        return this.#estado_civil;
+    }
+
+    get dependentes(){
+        return this.#dependentes;
     }
 
     // Métodos
@@ -59,6 +84,24 @@ class Pessoa{
         }
     }
 
+    validarDia(dia){
+        if(dia > 30 || dia <= 0){
+            throw new Error("Um mês tem apenas 30 dias");
+        }
+    }
+
+    validarMes(Mes){
+        if(Mes > 12 || Mes <= 0){
+            throw new Error("Um ano tem apenas 12 meses");
+        }
+    }
+
+    validarAno(ano){
+        if(ano > 2024 || ano <= 1900){
+            throw new Error("Somente anos dentro do intervalo de 1900 a 2024 são aceitos.");
+        }
+    }
+
     formatarCPF() {
         const numerosCPF = this.#CPF.replace(/\D/g, '');
         const cpfFormatado = numerosCPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
@@ -80,7 +123,10 @@ try{
     const p = new Pessoa(nome,CPF,dia,mes,ano,renda,estado_civ,dependentes);
     console.log("Nome: "+p.nome);
     console.log("CPF: "+p.formatarCPF());
-    console.log("");
+    console.log("Data de Nascimento: "+p.nascimento);
+    console.log("Renda: R$"+p.renda);
+    console.log("Estado civil: "+p.estado_civil);
+    console.log("Dependentes: "+p.dependentes);
 }catch(error){
     console.error(error.message);
 }
