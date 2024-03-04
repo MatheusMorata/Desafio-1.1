@@ -12,21 +12,38 @@ class Pessoa{
         this.validarEstadoCivil(est);
         this.validarRenda(renda);
         this.validarNome(n);
+        this.validarCPF(cpf);
+        this.validarDependentes(depen);
 
-        this.#nome = n;
+        this.#nome = n.toString();
         this.#CPF = cpf;
         this.#nascimento = dia+'/'+mes+'/'+ano;
         this.#renda = renda;
         this.#estado_civil = est.toUpperCase();
-        this.#dependentes = depen;
+        this.#dependentes = Number(depen);
     }
 
+    // GETTER
+    get nome(){
+        return this.#nome;
+    }
 
-    
-
+    // Métodos
     validarEstadoCivil(estado_civil) {
         if (!estado_civil || !/^[C|S|V|D]$/i.test(estado_civil)) {
             throw new Error("Estado civil inválido. Deve ser 'C', 'S', 'V' ou 'D' (maiúsculo ou minúsculo).");
+        }
+    }
+
+    validarCPF(cpf){
+        if(cpf.length != 11){
+            throw new Error("CPF deve ter 11 dígitos.");
+        }
+    }
+
+    validarDependentes(dep){
+        if(dep < 0 || dep > 10){
+            throw new Error("O número de dependentes deve está entre o intervalo 0 e 10.");
         }
     }
 
@@ -42,16 +59,11 @@ class Pessoa{
         }
     }
 
-    toString(){
-        console.clear();
-        const saida = 'Nome: '+this.#nome+
-                      '\nCPF: '+this.#CPF+
-                      '\nData de nascimento: '+this.#nascimento+
-                      '\nRenda Mensal: '+this.#renda+
-                      '\nEstado cívil: '+this.#estado_civil+
-                      '\nDependentes: '+this.#dependentes;
-        return saida;
-    } 
+    formatarCPF() {
+        const numerosCPF = this.#CPF.replace(/\D/g, '');
+        const cpfFormatado = numerosCPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+        return cpfFormatado;
+    }
 
 }
 
@@ -66,7 +78,9 @@ let dependentes = read.question("Digite o numero de dependentes: ");
 
 try{
     const p = new Pessoa(nome,CPF,dia,mes,ano,renda,estado_civ,dependentes);
-    console.log(p.toString());
+    console.log("Nome: "+p.nome);
+    console.log("CPF: "+p.formatarCPF());
+    console.log("");
 }catch(error){
     console.error(error.message);
 }
