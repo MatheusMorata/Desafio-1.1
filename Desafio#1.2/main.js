@@ -10,15 +10,19 @@ while(op != 3){
     menus.menuPrincipal();
     op = read.question("Opcao: ");
     console.clear();
-    if(op === 1){
+    if(op == 1){
         while(op_paciente != 5){
-            
+            menus.menuPaciente();
+            op_paciente = read.question("Opcao: ");
+            console.clear();
         }
-    }else if(op === 2){
+    }else if(op == 2){
         while(op_agenda != 4){
-           
+            menus.menuAgenda();
+            op_agenda = read.question("Opcao: ");
+            console.clear();
         }
-    }else if(op === 3){
+    }else if(op == 3){
         console.log("Até logo...");
     }else{
         console.log("Opcao inválida...");
