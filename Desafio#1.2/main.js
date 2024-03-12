@@ -12,11 +12,11 @@ while(op != 3){
     console.clear();
     if(op === 1){
         while(op_paciente != 5){
-
+            
         }
     }else if(op === 2){
         while(op_agenda != 4){
-
+           
         }
     }else if(op === 3){
         console.log("Até logo...");
