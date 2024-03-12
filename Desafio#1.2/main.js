@@ -1,6 +1,8 @@
+// Importações
 const read = require('readline-sync');
 const Menus = require('./menus');
 
+// Variáveis e Objetos
 const menus = new Menus();
 let op = 0;
 let op_paciente = 0;
