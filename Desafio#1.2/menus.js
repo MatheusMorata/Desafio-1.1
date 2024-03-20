@@ -1,5 +1,6 @@
 const Paciente = require('./paciente');
 const read = require('readline-sync');
+const Agenda = require('./agenda'); 
 
 class Menus {
 
@@ -40,6 +41,13 @@ class Menus {
             console.log(error.message);
         }
         return p;
+    }
+
+    agendarConsulta(){
+        console.log("Cadastro de Consulta:");
+        const cpf = read.question("CPF: ").toString();
+        const Hora = read.question("Hora: ");
+        const Minuto = read.question("Minuto: ");
     }
 
 }

@@ -43,6 +43,17 @@ while(op != 3){
             menu.menuAgenda();
             op_agenda = read.question();
             console.clear();
+            if(op_agenda == 1){
+
+            }else if(op_agenda == 2){
+
+            }else if(op_agenda == 3){
+
+            }else if(op_agenda == 4){
+
+            }else{
+                console.clear();
+            }
         }
     }else if(op == 3){
         console.log("Até logo...");
