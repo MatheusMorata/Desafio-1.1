@@ -33,7 +33,7 @@ class Cadastro {
         }
         if (index !== -1) {
             this.pacientes.splice(index, 1);
-            this.contador--; // Decrementa o contador
+            this.contador--;
             console.log(`Paciente com CPF ${cpf} excluído com sucesso.`);
         } else {
             console.log(`Paciente com CPF ${cpf} não encontrado.`);
@@ -59,6 +59,10 @@ class Cadastro {
             console.log("Data de Nascimento:", paciente.dataNascimento);
             console.log("----------------------------");
         });
+    }
+
+    verificarExistenciaCPF(cpf) {
+        return this.pacientes.some(paciente => paciente.cpf === cpf);
     }
 
 }
