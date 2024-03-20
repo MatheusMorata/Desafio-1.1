@@ -4,19 +4,6 @@ class Paciente {
     #dataNascimento;
 
     constructor(cpf, nome, data) {
-        if (!cpf || cpf.length !== 11) {
-            throw new Error('Erro: O CPF deve ter 11 dígitos.');
-        }
-        if (nome.length < 5) {
-            throw new Error('Erro: Nome deve ter mais de 5 caracteres.');
-        }
-        const dataRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-        if (!dataRegex.test(data)) {
-            throw new Error('Erro: Data deve estar no formato DD/MM/AAAA.');
-        }
-        if (!this.validaCPF(cpf)) {
-            throw new Error('Erro: CPF inválido.');
-        }
         this.#cpf = cpf;
         this.#nome = nome;
         this.#dataNascimento = data;

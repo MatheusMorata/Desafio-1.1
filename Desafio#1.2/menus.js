@@ -1,3 +1,6 @@
+const Paciente = require('./paciente');
+const read = require('readline-sync');
+
 class Menus {
 
     menuPrincipal() {
@@ -22,6 +25,22 @@ class Menus {
         console.log("2-Cancelar agendamento");
         console.log("3-Listar agenda");
         console.log("4-Voltar p/ menu principal");
+    }
+
+    cadastroPaciente(){
+        let p = 0;
+        console.log("Cadastro de Paciente:");
+        const cpf = read.question("CPF: ");
+        const nome = read.question("Nome: ");
+        const dataNascimento = read.question("Data de Nascimento (DD/MM/AAAA): ");
+        
+        try {
+            p = new Paciente(cpf, nome, dataNascimento);
+            console.log("Paciente cadastrado com sucesso!");
+        } catch (error) {
+            console.log(error.message);
+        }
+        return p;
     }
 
 }

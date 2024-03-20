@@ -1,39 +1,26 @@
 const Paciente = require('./paciente');
 
 class Cadastro {
+    #contador;
     constructor() {
         this.pacientes = [];
+        this.#contador = 0;
     }
 
-    adicionar(paciente) {
-        if (!(paciente instanceof Paciente)) {
-            throw new Error('O parâmetro deve ser um objeto do tipo Paciente.');
-        }
-        this.pacientes.push(paciente);
+    //GETTERS
+    get contador(){
+        return this.#contador;
     }
 
-    excluir(cpf) {
-        const index = this.pacientes.findIndex(paciente => paciente.cpf === cpf);
-        if (index !== -1) {
-            this.pacientes.splice(index, 1);
-            console.log(`Paciente com CPF ${cpf} excluído com sucesso.`);
-        } else {
-            console.log(`Paciente com CPF ${cpf} não encontrado.`);
-        }
+    set contador(c){
+        this.#contador = c;
     }
 
-    printCPF() {
-        const pacientesOrdenados = this.pacientes.slice().sort((a, b) => a.cpf.localeCompare(b.cpf));
-        pacientesOrdenados.forEach(paciente => {
-            console.log(`CPF: ${paciente.cpf} \nNome: ${paciente.nome} \nData de Nascimento: ${paciente.dataNascimento}`);
-        });
-    }
-
-    printNome() {
-        const pacientesOrdenados = this.pacientes.slice().sort((a, b) => a.nome.localeCompare(b.nome));
-        pacientesOrdenados.forEach(paciente => {
-            console.log(`Nome: ${paciente.nome}, CPF: ${paciente.cpf}, Data de Nascimento: ${paciente.dataNascimento}`);
-        });
+    adicionar(paciente){
+        const p = this.pacientes;
+        p[this.contador + 1] = paciente; // Ajuste aqui
+        this.pacientes = p; // Ajuste aqui
+        this.contador = this.contador + 1; // Ajuste aqui
     }
 }
-module.exports = Paciente;
+module.exports = Cadastro;
