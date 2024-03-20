@@ -23,6 +23,17 @@ while(op != 3){
                 const p = menu.cadastroPaciente();
                 cadastro.adicionar(p);
                 console.clear();
+            }else if(op_paciente == 2){
+                const cpf = read.question("Digite o CPF a ser excluido: ").toString();
+                cadastro.excluir();
+            }else if(op_paciente == 3){
+                cadastro.printCPF();
+            }else if(op_paciente == 4){
+                cadastro.printNome();
+            }else if(op_paciente == 5){
+                console.clear();
+            }else{
+                console.log("Opcao Invalida");
             }
         }      
     }else if(op == 2){

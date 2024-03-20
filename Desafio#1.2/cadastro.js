@@ -35,9 +35,30 @@ class Cadastro {
             this.pacientes.splice(index, 1);
             this.#contador--;
 
-        } 
+        } else {
+            console.log(`Paciente com CPF ${cpf} não encontrado.`);
+        }
     }
 
-    
+    printCPF() {
+        const pacientesOrdenados = this.pacientes.slice().sort((a, b) => a.cpf.localeCompare(b.cpf));
+        pacientesOrdenados.forEach(paciente => {
+            console.log("CPF:", paciente.cpf);
+            console.log("Nome:", paciente.nome);
+            console.log("Data de Nascimento:", paciente.dataNascimento);
+            console.log("----------------------------");
+        });
+    }
+
+    printNome() {
+        const pacientesOrdenados = this.pacientes.slice().sort((a, b) => a.nome.localeCompare(b.nome));
+        pacientesOrdenados.forEach(paciente => {
+            console.log("Nome:", paciente.nome);
+            console.log("CPF:", paciente.cpf);
+            console.log("Data de Nascimento:", paciente.dataNascimento);
+            console.log("----------------------------");
+        });
+    }
+
 }
 module.exports = Cadastro;

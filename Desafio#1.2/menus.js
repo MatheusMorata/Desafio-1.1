@@ -30,8 +30,8 @@ class Menus {
     cadastroPaciente(){
         let p = 0;
         console.log("Cadastro de Paciente:");
-        const cpf = read.question("CPF: ");
-        const nome = read.question("Nome: ");
+        const cpf = read.question("CPF: ").toString();
+        const nome = read.question("Nome: ").toString();
         const dataNascimento = read.question("Data de Nascimento (DD/MM/AAAA): ");
         
         try {
