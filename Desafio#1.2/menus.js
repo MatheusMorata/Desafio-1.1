@@ -26,5 +26,5 @@ class Menus {
 
 }
 
-// Exporta a classe Menus corretamente
+// Exporta a classe Menus 
 module.exports = Menus;
