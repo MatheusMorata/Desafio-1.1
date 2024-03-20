@@ -25,11 +25,11 @@ class Cadastro {
     printCPF() {
         const pacientesOrdenados = this.pacientes.slice().sort((a, b) => a.cpf.localeCompare(b.cpf));
         pacientesOrdenados.forEach(paciente => {
-            console.log(`CPF: ${paciente.cpf}, Nome: ${paciente.nome}, Data de Nascimento: ${paciente.dataNascimento}`);
+            console.log(`CPF: ${paciente.cpf} \nNome: ${paciente.nome} \nData de Nascimento: ${paciente.dataNascimento}`);
         });
     }
 
-    prettyNome() {
+    printNome() {
         const pacientesOrdenados = this.pacientes.slice().sort((a, b) => a.nome.localeCompare(b.nome));
         pacientesOrdenados.forEach(paciente => {
             console.log(`Nome: ${paciente.nome}, CPF: ${paciente.cpf}, Data de Nascimento: ${paciente.dataNascimento}`);
