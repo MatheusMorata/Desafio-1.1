@@ -27,6 +27,19 @@ class Paciente{
         this.#dataNascimento = dia + "/" + mes + "/" + ano;
     }
 
+    //GETTERS
+    get cpf(){
+        return this.#cpf;
+    }
+
+    get nome(){
+        return this.#nome;
+    }
+
+    get dataNascimento(){
+        return this.#dataNascimento;
+    }
+
     validaCPF(cpf) {
         let j = 10;
         let soma1 = 0;
