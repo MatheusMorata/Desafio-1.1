@@ -26,20 +26,21 @@ class Cadastro {
     excluir(cpf) {
         let index = -1;
         for (let i = 0; i < this.pacientes.length; i++) {
-            if (this.pacientes[i].cpf === cpf) {
+            if (this.pacientes[i] && this.pacientes[i].cpf === cpf) {
                 index = i;
                 break;
             }
         }
         if (index !== -1) {
             this.pacientes.splice(index, 1);
-            this.#contador--;
-
+            this.contador--; // Decrementa o contador
+            console.log(`Paciente com CPF ${cpf} excluído com sucesso.`);
         } else {
             console.log(`Paciente com CPF ${cpf} não encontrado.`);
         }
     }
-
+    
+    
     printCPF() {
         const pacientesOrdenados = this.pacientes.slice().sort((a, b) => a.cpf.localeCompare(b.cpf));
         pacientesOrdenados.forEach(paciente => {

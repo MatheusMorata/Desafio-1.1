@@ -11,6 +11,8 @@ let op_paciente = 0
 let op_agenda = 0
 
 while(op != 3){
+    op_paciente = 0
+    op_agenda = 0
     menu.menuPrincipal();
     op = read.question();
     console.clear();
@@ -25,7 +27,7 @@ while(op != 3){
                 console.clear();
             }else if(op_paciente == 2){
                 const cpf = read.question("Digite o CPF a ser excluido: ").toString();
-                cadastro.excluir();
+                cadastro.excluir(cpf);
             }else if(op_paciente == 3){
                 cadastro.printCPF();
             }else if(op_paciente == 4){

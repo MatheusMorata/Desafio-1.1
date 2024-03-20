@@ -1,25 +1,12 @@
 class Paciente {
-    #cpf;
-    #nome;
-    #dataNascimento;
+    cpf;
+    nome;
+    dataNascimento;
 
     constructor(cpf, nome, data) {
-        this.#cpf = cpf;
-        this.#nome = nome;
-        this.#dataNascimento = data;
-    }
-
-    // GETTERS
-    get cpf() {
-        return this.#cpf;
-    }
-
-    get nome() {
-        return this.#nome;
-    }
-
-    get dataNascimento() {
-        return this.#dataNascimento;
+        this.cpf = cpf;
+        this.nome = nome;
+        this.dataNascimento = data;
     }
 
     validaCPF(cpf) {
