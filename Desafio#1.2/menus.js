@@ -36,7 +36,6 @@ class Menus {
         
         try {
             p = new Paciente(cpf, nome, dataNascimento);
-            console.log("Paciente cadastrado com sucesso!");
         } catch (error) {
             console.log(error.message);
         }

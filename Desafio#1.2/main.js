@@ -22,6 +22,7 @@ while(op != 3){
             if(op_paciente == 1){
                 const p = menu.cadastroPaciente();
                 cadastro.adicionar(p);
+                console.clear();
             }
         }      
     }else if(op == 2){
