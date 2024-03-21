@@ -54,11 +54,12 @@ while(op != 3){
                     console.log(error.message);
                 }
             }else if(op_agenda == 2){
-                
+                const c = menu.cancelarConsulta();
+                agenda.excluirConsulta(c.cpf,c.data,c.HoraInicial);
             }else if(op_agenda == 3){
                 agenda.ListaAgenda();
             }else if(op_agenda == 4){
-
+                console.clear();
             }else{
                 console.clear();
             }
