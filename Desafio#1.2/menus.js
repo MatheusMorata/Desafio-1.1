@@ -52,6 +52,12 @@ class Menus {
         return {cpf,data,HoraInicial,HoraFinal};
     }
 
+    cancelarConsulta(){
+        const cpf = read.question("CPF: ").toString();
+        const data = read.question("Data: ").toString();
+        const HoraInicial = read.question("Hora Inicial: ").toString();
+        return {cpf,data,HoraInicial};
+    }
 }
 
 // Exporta a classe Menus 
