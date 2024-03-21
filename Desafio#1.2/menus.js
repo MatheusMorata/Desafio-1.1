@@ -46,9 +46,10 @@ class Menus {
     agendarConsulta(){
         console.log("Cadastro de Consulta:");
         const cpf = read.question("CPF: ").toString();
-        const Hora = read.question("Hora: ");
-        const Minuto = read.question("Minuto: ");
-        return {cpf,Hora,Minuto};
+        const data = read.question("Data: ").toString();
+        const HoraInicial = read.question("Hora Inicial: ").toString();
+        const HoraFinal = read.question("Hora Final: ").toString();
+        return {cpf,data,HoraInicial,HoraFinal};
     }
 
 }

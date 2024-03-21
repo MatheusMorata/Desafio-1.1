@@ -47,11 +47,16 @@ while(op != 3){
             console.clear();
             if(op_agenda == 1){
                 const c = menu.agendarConsulta();
-                agenda.agendarConsulta(c.cpf,c.Hora,c.Minuto);
+                try{
+                    agenda.agendarConsulta(c.cpf,c.data,c.HoraInicial,c.HoraFinal);
+                    console.clear();
+                }catch(error){
+                    console.log(error.message);
+                }
             }else if(op_agenda == 2){
-
+                
             }else if(op_agenda == 3){
-
+                agenda.ListaAgenda();
             }else if(op_agenda == 4){
 
             }else{
