@@ -48,6 +48,7 @@ class Menus {
         const cpf = read.question("CPF: ").toString();
         const Hora = read.question("Hora: ");
         const Minuto = read.question("Minuto: ");
+        return new Agenda(cpf,Hora,Minuto); 
     }
 
 }
