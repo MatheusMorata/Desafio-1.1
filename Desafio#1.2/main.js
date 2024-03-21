@@ -2,10 +2,12 @@
 const Menus = require('./menus');
 const read = require('readline-sync');
 let Cadastro = require('./cadastro');
+let Agenda = require('./agenda');
 
 // Variáveis e Objetos
 const menu = new Menus();
-let cadastro = new Cadastro(); 
+let cadastro = new Cadastro();
+let agenda = new Agenda(); 
 let op = 0 
 let op_paciente = 0
 let op_agenda = 0
@@ -44,7 +46,8 @@ while(op != 3){
             op_agenda = read.question();
             console.clear();
             if(op_agenda == 1){
-
+                const c = menu.agendarConsulta();
+                agenda.agendarConsulta(c.cpf,c.Hora,c.Minuto);
             }else if(op_agenda == 2){
 
             }else if(op_agenda == 3){
