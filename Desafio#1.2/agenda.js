@@ -61,5 +61,18 @@ class Agenda {
         });
     }
 
+    excluirConsulta(cpf, dataConsulta, horaInicial) {
+        // Encontrar o índice da consulta a ser excluída
+        const index = this.#consultas.findIndex(consulta => consulta.cpf === cpf && consulta.dataConsulta === dataConsulta && consulta.horaInicial === horaInicial);
+
+        // Verificar se a consulta foi encontrada
+        if (index !== -1) {
+            // Remover a consulta da lista de consultas
+            this.#consultas.splice(index, 1);
+            console.log(`Consulta com CPF ${cpf}, data ${dataConsulta} e horário inicial ${horaInicial} excluída com sucesso.`);
+        } else {
+            console.log(`Consulta com CPF ${cpf}, data ${dataConsulta} e horário inicial ${horaInicial} não encontrada.`);
+        }
+    }
 }
 module.exports = Agenda;
