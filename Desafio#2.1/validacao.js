@@ -16,4 +16,3 @@ try{
 }catch(error){
     console.log("ERRO: Não passou o caminho do arquivo.");
 }
-
