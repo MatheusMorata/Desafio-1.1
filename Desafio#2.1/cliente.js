@@ -5,7 +5,7 @@ class Cliente{
     #renda;
     #est_civil;
 
-    Cliente(n,cpf,nasc,r,est){
+    Cliente(n,cpf,nasc,r = 0,est = ''){
         this.#nome = n;
         this.#cpf = cpf;
         this.#nascimento = nasc;
@@ -13,5 +13,5 @@ class Cliente{
         this.#est_civil = est;
     }
 
-    
+
 }
