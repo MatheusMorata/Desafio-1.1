@@ -1,6 +1,6 @@
 const fs = require('fs');
-class LeitorJSON {
-    static lerArquivoJSON(caminhoArquivo) {
+class Arquivo {
+    static lerJSON(caminhoArquivo) {
         try {
             const dados = fs.readFileSync(caminhoArquivo, 'utf8');
             const objetoJavaScript = JSON.parse(dados);
@@ -11,3 +11,5 @@ class LeitorJSON {
         }
     }
 }
+
+module.exports = Arquivo;
