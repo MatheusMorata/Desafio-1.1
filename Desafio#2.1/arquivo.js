@@ -18,6 +18,108 @@ class Arquivo {
             throw new Error('O caminho especificado não é um arquivo.');
         }
     }
+
+
+    static validarCPF(cpf) {
+
+        cpf = cpf.replace(/\D/g, '');
+
+        if (cpf.length !== 11) {
+            return false;
+        }
+
+        if (/^(\d)\1{10}$/.test(cpf)) {
+            return false;
+        }
+
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+            soma += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        let resto = soma % 11;
+        let digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
+
+        if (parseInt(cpf.charAt(9)) !== digitoVerificador1) {
+            return false;
+        }
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+            soma += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        resto = soma % 11;
+        let digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
+
+        if (parseInt(cpf.charAt(10)) !== digitoVerificador2) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static validarDataNascimento(dtNascimento) {
+        // Implementação da validação da data de nascimento
+        // Retorna true se a data de nascimento é válida, false caso contrário
+        const dataNascimento = new Date(dtNascimento.substr(4, 4), dtNascimento.substr(2, 2) - 1, dtNascimento.substr(0, 2));
+        const idade = new Date().getFullYear() - dataNascimento.getFullYear();
+        return idade >= 18;
+    }
+
+    static validarRendaMensal(rendaMensal) {
+        // Implementação da validação da renda mensal
+        // Retorna true se a renda mensal é válida, false caso contrário
+        return /^(\d{1,12},\d{2})?$/.test(rendaMensal);
+    }
+
+    static validarEstadoCivil(estadoCivil) {
+        // Implementação da validação do estado civil
+        // Retorna true se o estado civil é válido ('C' para casado, 'S' para solteiro, 'V' para viúvo, 'D' para divorciado), false caso contrário
+        return /^[CSVDcsvd]?$/.test(estadoCivil);
+    }
+
+    static validarDadosCliente(dadosCliente) {
+        const erros = [];
+
+        // Validação do nome
+        if (!dadosCliente.nome || dadosCliente.nome.length < 5 || dadosCliente.nome.length > 60) {
+            erros.push({ campo: 'nome', mensagem: 'O nome deve ter entre 5 e 60 caracteres.' });
+        }
+
+        // Validação do CPF
+        if (!dadosCliente.cpf || !Arquivo.validarCPF(dadosCliente.cpf)) {
+            erros.push({ campo: 'cpf', mensagem: 'CPF inválido.' });
+        }
+
+        // Validação da data de nascimento
+        if (!dadosCliente.dt_nascimento || !Arquivo.validarDataNascimento(dadosCliente.dt_nascimento)) {
+            erros.push({ campo: 'dt_nascimento', mensagem: 'Data de nascimento inválida ou o cliente não tem pelo menos 18 anos.' });
+        }
+
+        // Validação da renda mensal
+        if (dadosCliente.renda_mensal && !Arquivo.validarRendaMensal(dadosCliente.renda_mensal)) {
+            erros.push({ campo: 'renda_mensal', mensagem: 'Renda mensal inválida.' });
+        }
+
+        // Validação do estado civil
+        if (dadosCliente.estado_civil && !Arquivo.validarEstadoCivil(dadosCliente.estado_civil)) {
+            erros.push({ campo: 'estado_civil', mensagem: 'Estado civil inválido.' });
+        }
+
+        return erros;
+    }
+
+    static criarDados(arrayDados) {
+        const resultado = [];
+
+        arrayDados.forEach(objeto => {
+            const dadosCliente = objeto;
+            const erros = Arquivo.validarDadosCliente(dadosCliente);
+
+            resultado.push({ dados: dadosCliente, erros });
+        });
+
+        return resultado;
+    }
 }
 
 module.exports = Arquivo;
