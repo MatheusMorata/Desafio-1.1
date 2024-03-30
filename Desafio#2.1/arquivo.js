@@ -58,49 +58,39 @@ class Arquivo {
     }
 
     static validarDataNascimento(dtNascimento) {
-        // Implementação da validação da data de nascimento
-        // Retorna true se a data de nascimento é válida, false caso contrário
+
         const dataNascimento = new Date(dtNascimento.substr(4, 4), dtNascimento.substr(2, 2) - 1, dtNascimento.substr(0, 2));
         const idade = new Date().getFullYear() - dataNascimento.getFullYear();
         return idade >= 18;
     }
 
     static validarRendaMensal(rendaMensal) {
-        // Implementação da validação da renda mensal
-        // Retorna true se a renda mensal é válida, false caso contrário
         return /^(\d{1,12},\d{2})?$/.test(rendaMensal);
     }
 
     static validarEstadoCivil(estadoCivil) {
-        // Implementação da validação do estado civil
-        // Retorna true se o estado civil é válido ('C' para casado, 'S' para solteiro, 'V' para viúvo, 'D' para divorciado), false caso contrário
         return /^[CSVDcsvd]?$/.test(estadoCivil);
     }
 
     static validarDadosCliente(dadosCliente) {
         const erros = [];
 
-        // Validação do nome
         if (!dadosCliente.nome || dadosCliente.nome.length < 5 || dadosCliente.nome.length > 60) {
             erros.push({ campo: 'nome', mensagem: 'O nome deve ter entre 5 e 60 caracteres.' });
         }
 
-        // Validação do CPF
         if (!dadosCliente.cpf || !Arquivo.validarCPF(dadosCliente.cpf)) {
             erros.push({ campo: 'cpf', mensagem: 'CPF inválido.' });
         }
 
-        // Validação da data de nascimento
         if (!dadosCliente.dt_nascimento || !Arquivo.validarDataNascimento(dadosCliente.dt_nascimento)) {
             erros.push({ campo: 'dt_nascimento', mensagem: 'Data de nascimento inválida ou o cliente não tem pelo menos 18 anos.' });
         }
 
-        // Validação da renda mensal
         if (dadosCliente.renda_mensal && !Arquivo.validarRendaMensal(dadosCliente.renda_mensal)) {
             erros.push({ campo: 'renda_mensal', mensagem: 'Renda mensal inválida.' });
         }
 
-        // Validação do estado civil
         if (dadosCliente.estado_civil && !Arquivo.validarEstadoCivil(dadosCliente.estado_civil)) {
             erros.push({ campo: 'estado_civil', mensagem: 'Estado civil inválido.' });
         }
