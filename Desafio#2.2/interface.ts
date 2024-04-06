@@ -10,7 +10,7 @@ const api = new Api();
 // Classe Interface
 export class Interface {
 
-    async menu() {
+    async menu(): Promise<void> {
 
         // Variáveis
         let moedaOrigem: string = "";
