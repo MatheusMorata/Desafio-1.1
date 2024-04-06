@@ -6,4 +6,9 @@ export class Validacao{
         }
     }
 
+    validarMoedas(str1,str2){
+        if(str1 == str2){
+            throw new Error("ERRO: Não é possível fazer conversão da mesma moeda");
+        }
+    }
 }
