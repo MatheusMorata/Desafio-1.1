@@ -24,7 +24,7 @@ var Interface = /** @class */ (function () {
                     validar.validarLengthCaracteres(moedaDestino);
                     validar.validarMoedas(moedaOrigem, moedaDestino);
                     console.log("");
-                    valor = read.question("Valor: ");
+                    valor = parseFloat(read.question("Valor: "));
                     validar.validarValor(valor);
                 }
                 else {

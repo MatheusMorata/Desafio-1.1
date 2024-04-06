@@ -28,7 +28,7 @@ export class Interface {
 
                     console.log("");
 
-                    valor = read.question("Valor: ");
+                    valor = parseFloat(read.question("Valor: "));
                     validar.validarValor(valor);
 
 

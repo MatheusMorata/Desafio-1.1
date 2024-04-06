@@ -13,14 +13,14 @@ var Validacao = /** @class */ (function () {
     // Moeda origem ≠ moeda destino.
     Validacao.prototype.validarMoedas = function (str1, str2) {
         if (str1 == str2) {
-            throw new Error("ERRO: Não é possível fazer conversão da mesma moeda");
+            throw new Error("ERRO: Não é possível fazer conversão da mesma moeda. ");
         }
     };
     // O valor deve ser númerico.
     Validacao.prototype.validarValor = function (valor) {
         // Verifica se o valor não é um número ou se não é um valor de ponto flutuante
         if (isNaN(valor) || typeof valor !== 'number') {
-            throw new Error('O valor não é um número de ponto flutuante.');
+            throw new Error('ERRO: Valor não é um número de ponto flutuante. ');
         }
     };
     return Validacao;
