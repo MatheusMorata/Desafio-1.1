@@ -1,6 +1,7 @@
 // Importações
 import * as read from 'readline-sync';
 import { Validacao } from './validacao';
+import { Api } from './api';
 
 // Objeto 
 const validar = new Validacao();

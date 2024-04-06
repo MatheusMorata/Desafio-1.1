@@ -1,3 +1,6 @@
 // Importações
-import * as http from 'http';
-const 
+import * as http from 'axios'; 
+
+export class Api{
+
+}
