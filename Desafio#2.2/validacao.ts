@@ -22,4 +22,9 @@ export class Validacao{
         }
     }
 
+    validarNegativo(valor1,valor2){
+        if(valor1 <= 0  || valor2 <= 0){
+            throw new Error('ERRO: Valor não negativo ou igual a zero. ');
+        }
+    }
 }
