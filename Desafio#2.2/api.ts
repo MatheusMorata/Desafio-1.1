@@ -6,7 +6,7 @@ export class Api {
 
         // Variáveis do método
         const minha_key: string = '0a5f91d54f839d23fd76fd6e';
-        const rota: string = `https://v6.exchangerate-api.com/v6/${minha_key}/latest/${moedaOrigem}`;
+        const rota: string = 'https://v6.exchangerate-api.com/v6/'+{minha_key}+'/latest/'+{moedaOrigem};
         let valor: number;
 
         try {
@@ -19,4 +19,5 @@ export class Api {
             throw error; // lançando novamente o erro para que o chamador possa lidar com ele
         }
     }
+
 }

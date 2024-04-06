@@ -28,7 +28,7 @@ var Interface = /** @class */ (function () {
                     console.log("");
                     valor = parseFloat(read.question("Valor: "));
                     validar.validarValor(valor);
-                    api.getCotacao(moedaOrigem, moedaDestino);
+                    console.log(api.getCotacao(moedaOrigem, moedaDestino));
                 }
                 else {
                     break;

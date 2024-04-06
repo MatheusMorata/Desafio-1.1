@@ -48,7 +48,7 @@ var Api = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         minha_key = '0a5f91d54f839d23fd76fd6e';
-                        rota = 'https://v6.exchangerate-api.com/v6/' + minha_key + '/latest/' + moedaOrigem;
+                        rota = "https://v6.exchangerate-api.com/v6/".concat(minha_key, "/latest/").concat(moedaOrigem);
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
@@ -60,7 +60,7 @@ var Api = /** @class */ (function () {
                     case 3:
                         error_1 = _a.sent();
                         console.error('ERRO: ao obter a taxa de câmbio:', error_1);
-                        return [3 /*break*/, 4];
+                        throw error_1; // lançando novamente o erro para que o chamador possa lidar com ele
                     case 4: return [2 /*return*/];
                 }
             });
@@ -69,6 +69,3 @@ var Api = /** @class */ (function () {
     return Api;
 }());
 exports.Api = Api;
-var teste = new Api();
-var teste2 = teste.getCotacao('BRL', 'USD');
-console.log(teste2);
