@@ -23,6 +23,5 @@ export class Validacao{
     
         return parseFloat(valor.toFixed(2)); // Retorna o valor com duas casas decimais
     }
-    
 
 }
