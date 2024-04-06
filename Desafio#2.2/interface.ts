@@ -1,32 +1,34 @@
-// Importações 
+// Importações
 import * as read from 'readline-sync';
-import {Validacao} from './validacao';
+import { Validacao } from './validacao';
 
-// Objeto da classe validação
+// Objeto 
 const validar = new Validacao();
 
-export class Interface{
+// Classe Interface
+export class Interface {
 
-    menu(){
-        
-        // Variáveis
-        let moedaOrigem: string = "";
-        let moedaDestino: string = "";
+    menu() {
 
-        try{
-            while(true){
+        let moedaOrigem = "";
+        let moedaDestino = "";
+
+        try {
+            while (true) {
                 moedaOrigem = read.question("Moeda origem: ");
-                validar.validarLengthCaracteres(moedaOrigem);   
-                if(moedaOrigem !== ""){
+                validar.validarLengthCaracteres(moedaOrigem);
+                
+                if (moedaOrigem !== "") {
                     moedaDestino = read.question("Moeda destino: ");
-                }else{
+                } else {
                     break;
                 }
-                validar.validarMoedas(moedaOrigem,moedaDestino);
+
+                validar.validarMoedas(moedaOrigem, moedaDestino);
             }
-        }catch(error){
+        } catch (error) {
             console.log(error.message);
+            this.menu(); // Chama novamente o método menu após tratar o erro
         }
     }
-
 }
