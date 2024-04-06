@@ -17,7 +17,7 @@ export class Validacao{
     // O valor deve ser númerico.
     validarValor(valor: any){
         // Verifica se o valor não é um número ou se não é um valor de ponto flutuante
-        if (isNaN(valor) || typeof valor !== 'number' || !Number.isFinite(valor)) {
+        if (isNaN(valor) || typeof valor !== 'number') {
             throw new Error('O valor não é um número de ponto flutuante.');
         }
     }
