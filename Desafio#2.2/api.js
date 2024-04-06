@@ -66,6 +66,11 @@ var Api = /** @class */ (function () {
             });
         });
     };
+    Api.prototype.resultado = function (moedaOrigem, moedaDestino, valor, taxa) {
+        var conversao = valor * taxa;
+        console.log(moedaOrigem + " " + valor + " => " + moedaDestino + " " + conversao.toFixed(2));
+        console.log("Taxa: " + taxa.toFixed(6));
+    };
     return Api;
 }());
 exports.Api = Api;

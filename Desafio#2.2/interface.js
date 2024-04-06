@@ -74,7 +74,7 @@ var Interface = /** @class */ (function () {
                         return [4 /*yield*/, api.getCotacao(moedaOrigem, moedaDestino)];
                     case 3:
                         cotacao = _a.sent();
-                        console.log(cotacao);
+                        api.resultado(moedaOrigem, moedaDestino, valor, cotacao);
                         return [3 /*break*/, 5];
                     case 4: return [3 /*break*/, 6];
                     case 5: return [3 /*break*/, 2];

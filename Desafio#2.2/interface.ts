@@ -33,10 +33,9 @@ export class Interface {
                     valor = parseFloat(read.question("Valor: "));
                     validar.validarValor(valor);
                     
-                    const cotacao = await api.getCotacao(moedaOrigem, moedaDestino);
-
-
-
+                    let cotacao:number = await api.getCotacao(moedaOrigem, moedaDestino);
+                    api.resultado(moedaOrigem,moedaDestino,valor,cotacao);
+                    
                 } else {
                     break;
                 }
