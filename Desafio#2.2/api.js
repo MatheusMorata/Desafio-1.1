@@ -56,6 +56,7 @@ var Api = /** @class */ (function () {
                     case 2:
                         response = _a.sent();
                         valor = response.data['conversion_rates'][moedaDestino];
+                        console.log(response.data);
                         console.log(valor);
                         return [3 /*break*/, 4];
                     case 3:
@@ -70,3 +71,5 @@ var Api = /** @class */ (function () {
     return Api;
 }());
 exports.Api = Api;
+var teste = new Api();
+teste.getCotacao('BRL', 'USD');
