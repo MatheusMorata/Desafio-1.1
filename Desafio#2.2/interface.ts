@@ -21,11 +21,17 @@ export class Interface {
                 validar.validarLengthCaracteres(moedaOrigem);
                 
                 if (moedaOrigem !== "") {
+
                     moedaDestino = read.question("Moeda destino: ");
                     validar.validarLengthCaracteres(moedaDestino);
                     validar.validarMoedas(moedaOrigem, moedaDestino);
+
                     console.log("");
+
                     valor = read.question("Valor: ");
+                    validar.validarValor(valor);
+
+
                 } else {
                     break;
                 }
