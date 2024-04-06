@@ -4,8 +4,10 @@ exports.Interface = void 0;
 // Importações
 var read = require("readline-sync");
 var validacao_1 = require("./validacao");
+var api_1 = require("./api");
 // Objetos 
 var validar = new validacao_1.Validacao();
+var api = new api_1.Api();
 // Classe Interface
 var Interface = /** @class */ (function () {
     function Interface() {
@@ -26,6 +28,7 @@ var Interface = /** @class */ (function () {
                     console.log("");
                     valor = parseFloat(read.question("Valor: "));
                     validar.validarValor(valor);
+                    api.getCotacao(moedaOrigem, moedaDestino);
                 }
                 else {
                     break;
