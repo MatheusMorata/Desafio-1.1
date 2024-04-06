@@ -13,16 +13,20 @@ export class Interface{
         let moedaOrigem: string = "";
         let moedaDestino: string = "";
 
-        while(true){
-            moedaOrigem = read.question("Moeda origem: ");
-            validar.validarLengthCaracteres(moedaOrigem);   
-            if(moedaOrigem !== ""){
-                moedaDestino = read.question("Moeda destino: ");
-            }else{
-                break;
+        try{
+            while(true){
+                moedaOrigem = read.question("Moeda origem: ");
+                validar.validarLengthCaracteres(moedaOrigem);   
+                if(moedaOrigem !== ""){
+                    moedaDestino = read.question("Moeda destino: ");
+                }else{
+                    break;
+                }
             }
+        }catch(error){
+            console.log(error.message);
         }
     }
 
-    
+
 }
