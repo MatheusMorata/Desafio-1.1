@@ -34,7 +34,9 @@ export class Interface {
                     validar.validarValor(valor);
                     
                     const cotacao = await api.getCotacao(moedaOrigem, moedaDestino);
-                    console.log(cotacao);
+
+
+
                 } else {
                     break;
                 }
