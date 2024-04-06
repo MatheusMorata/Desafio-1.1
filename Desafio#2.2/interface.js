@@ -1,7 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Interface = void 0;
+// Importações 
 var read = require("readline-sync");
+var validacao_1 = require("./validacao");
+// Variáveis
+var validar = new validacao_1.Validacao();
 var Interface = /** @class */ (function () {
     function Interface() {
     }
@@ -9,7 +13,13 @@ var Interface = /** @class */ (function () {
         var moedaOrigem = "";
         var moedaDestino = "";
         while (true) {
-            moedaOrigem = read.question("Moeda origem: ");
+            try {
+                moedaOrigem = read.question("Moeda origem: ");
+                validar.validarLengthCaracteres(moedaOrigem);
+            }
+            catch (error) {
+                console.log(error.message);
+            }
             if (moedaOrigem !== "") {
                 moedaDestino = read.question("Moeda destino: ");
             }

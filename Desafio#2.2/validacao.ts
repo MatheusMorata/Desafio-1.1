@@ -1,4 +1,4 @@
-export class validacao{
+export class Validacao{
     
     validarLengthCaracteres(str){
         if(str.length != 3){
