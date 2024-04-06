@@ -20,8 +20,10 @@ export class Api {
         }
     }
 
-    resultado(){
-        
+    resultado(moedaOrigem: string, moedaDestino: string, valor: number, taxa: number){
+        const conversao:number = valor*taxa;
+        console.log(moedaOrigem+" "+valor+" => "+moedaDestino+" "+conversao.toFixed(2));
+        console.log("Taxa: "+taxa);
     }
 
 }
