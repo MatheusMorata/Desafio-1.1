@@ -10,7 +10,7 @@ const api = new Api();
 // Classe Interface
 export class Interface {
 
-    menu() {
+    async menu() {
 
         // Variáveis
         let moedaOrigem: string = "";
@@ -33,6 +33,8 @@ export class Interface {
                     valor = parseFloat(read.question("Valor: "));
                     validar.validarValor(valor);
                     
+                    const cotacao = await api.getCotacao(moedaOrigem, moedaDestino);
+                    console.log(cotacao);
                 } else {
                     break;
                 }
