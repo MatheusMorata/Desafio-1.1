@@ -43,7 +43,7 @@ var Api = /** @class */ (function () {
     }
     Api.prototype.getCotacao = function (moedaOrigem, moedaDestino) {
         return __awaiter(this, void 0, void 0, function () {
-            var minha_key, rota, response, valor, error_1;
+            var minha_key, rota, valor, response, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -55,10 +55,8 @@ var Api = /** @class */ (function () {
                         return [4 /*yield*/, axios_1.default.get(rota)];
                     case 2:
                         response = _a.sent();
-                        valor = response.data['conversion_rates'][moedaDestino];
-                        console.log(response.data);
-                        console.log(valor);
-                        return [3 /*break*/, 4];
+                        valor = parseFloat(response.data['conversion_rates'][moedaDestino]);
+                        return [2 /*return*/, valor];
                     case 3:
                         error_1 = _a.sent();
                         console.error('ERRO: ao obter a taxa de câmbio:', error_1);
@@ -72,4 +70,5 @@ var Api = /** @class */ (function () {
 }());
 exports.Api = Api;
 var teste = new Api();
-teste.getCotacao('BRL', 'USD');
+var teste2 = teste.getCotacao('BRL', 'USD');
+console.log(teste2);
