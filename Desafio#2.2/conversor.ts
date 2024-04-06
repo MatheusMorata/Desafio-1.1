@@ -1,5 +1,5 @@
 // Importações
 import {Interface} from './interface';
 
-const objeto = new Interface();
-objeto.menu();
+const objeto_interface = new Interface();
+objeto_interface.menu();
