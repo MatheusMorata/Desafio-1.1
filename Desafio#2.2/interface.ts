@@ -1,10 +1,11 @@
 // Importações
 import * as read from 'readline-sync';
 import { Validacao } from './validacao';
-import { Api } from './api';
 
-// Objeto 
+
+// Objetos 
 const validar = new Validacao();
+
 
 // Classe Interface
 export class Interface {
@@ -32,7 +33,7 @@ export class Interface {
                     valor = parseFloat(read.question("Valor: "));
                     validar.validarValor(valor);
 
-
+                
                 } else {
                     break;
                 }
