@@ -48,7 +48,7 @@ var Api = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         minha_key = '0a5f91d54f839d23fd76fd6e';
-                        rota = 'https://v6.exchangerate-api.com/v6/' + { minha_key: minha_key } + '/latest/' + { moedaOrigem: moedaOrigem };
+                        rota = 'https://v6.exchangerate-api.com/v6/' + minha_key + '/latest/' + moedaOrigem;
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
