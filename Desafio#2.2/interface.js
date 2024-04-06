@@ -11,15 +11,20 @@ var Interface = /** @class */ (function () {
     function Interface() {
     }
     Interface.prototype.menu = function () {
+        // Variáveis
         var moedaOrigem = "";
         var moedaDestino = "";
+        var valor;
         try {
             while (true) {
                 moedaOrigem = read.question("Moeda origem: ");
                 validar.validarLengthCaracteres(moedaOrigem);
                 if (moedaOrigem !== "") {
                     moedaDestino = read.question("Moeda destino: ");
+                    validar.validarLengthCaracteres(moedaDestino);
                     validar.validarMoedas(moedaOrigem, moedaDestino);
+                    console.log("");
+                    valor = read.question("Valor: ");
                 }
                 else {
                     break;

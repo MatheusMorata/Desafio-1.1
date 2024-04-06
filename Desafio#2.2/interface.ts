@@ -10,8 +10,10 @@ export class Interface {
 
     menu() {
 
-        let moedaOrigem = "";
-        let moedaDestino = "";
+        // Variáveis
+        let moedaOrigem: string = "";
+        let moedaDestino: string = "";
+        let valor: number; 
 
         try {
             while (true) {
@@ -20,7 +22,10 @@ export class Interface {
                 
                 if (moedaOrigem !== "") {
                     moedaDestino = read.question("Moeda destino: ");
+                    validar.validarLengthCaracteres(moedaDestino);
                     validar.validarMoedas(moedaOrigem, moedaDestino);
+                    console.log("");
+                    valor = read.question("Valor: ");
                 } else {
                     break;
                 }
