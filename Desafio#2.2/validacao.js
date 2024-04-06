@@ -23,6 +23,11 @@ var Validacao = /** @class */ (function () {
             throw new Error('ERRO: Valor não é um número de ponto flutuante. ');
         }
     };
+    Validacao.prototype.validarNegativo = function (valor1, valor2) {
+        if (valor1 <= 0 || valor2 <= 0) {
+            throw new Error('ERRO: Valor não negativo ou igual a zero. ');
+        }
+    };
     return Validacao;
 }());
 exports.Validacao = Validacao;

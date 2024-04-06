@@ -20,11 +20,10 @@ export class Validacao{
         if (isNaN(valor) || typeof valor !== 'number') {
             throw new Error('ERRO: Valor não é um número de ponto flutuante. ');
         }
-    }
-
-    validarNegativo(valor1,valor2){
-        if(valor1 <= 0  || valor2 <= 0){
-            throw new Error('ERRO: Valor não negativo ou igual a zero. ');
+        else if(valor <= 0){
+            throw new Error('ERRO: Valor negativo ou igual a zero. ');
         }
     }
+
+    
 }

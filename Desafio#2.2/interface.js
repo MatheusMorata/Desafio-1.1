@@ -26,6 +26,7 @@ var Interface = /** @class */ (function () {
                     console.log("");
                     valor = parseFloat(read.question("Valor: "));
                     validar.validarValor(valor);
+                    validar.validarNegativo(moedaOrigem, moedaOrigem);
                 }
                 else {
                     break;
