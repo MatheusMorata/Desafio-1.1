@@ -22,11 +22,11 @@ export class Interface{
                 }else{
                     break;
                 }
+                validar.validarMoedas(moedaOrigem,moedaDestino);
             }
         }catch(error){
             console.log(error.message);
         }
     }
-
 
 }

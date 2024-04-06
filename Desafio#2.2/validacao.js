@@ -5,7 +5,7 @@ var Validacao = /** @class */ (function () {
     function Validacao() {
     }
     Validacao.prototype.validarLengthCaracteres = function (str) {
-        if (str.length != 3) {
+        if (str.length != 3 && str.length != 0) {
             throw new Error("ERRO: A string deve ter exatos 3 caracteres. ");
         }
     };

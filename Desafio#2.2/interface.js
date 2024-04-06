@@ -23,6 +23,7 @@ var Interface = /** @class */ (function () {
                 else {
                     break;
                 }
+                validar.validarMoedas(moedaOrigem, moedaDestino);
             }
         }
         catch (error) {
