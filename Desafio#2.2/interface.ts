@@ -20,11 +20,10 @@ export class Interface {
                 
                 if (moedaOrigem !== "") {
                     moedaDestino = read.question("Moeda destino: ");
+                    validar.validarMoedas(moedaOrigem, moedaDestino);
                 } else {
                     break;
                 }
-
-                validar.validarMoedas(moedaOrigem, moedaDestino);
             }
         } catch (error) {
             console.log(error.message);
