@@ -2,28 +2,27 @@
 import * as read from 'readline-sync';
 import {Validacao} from './validacao';
 
-// Variáveis
+// Objeto da classe validação
 const validar = new Validacao();
 
 export class Interface{
 
     menu(){
+        
+        // Variáveis
         let moedaOrigem: string = "";
         let moedaDestino: string = "";
 
         while(true){
-            try{
-                moedaOrigem = read.question("Moeda origem: ");
-                validar.validarLengthCaracteres(moedaOrigem);    
-            }catch(error){
-                console.log(error.message);
+            moedaOrigem = read.question("Moeda origem: ");
+            validar.validarLengthCaracteres(moedaOrigem);   
+            if(moedaOrigem !== ""){
+                moedaDestino = read.question("Moeda destino: ");
+            }else{
+                break;
             }
-        if(moedaOrigem !== ""){
-            moedaDestino = read.question("Moeda destino: ");
-        }else{
-            break;
-        }
         }
     }
 
+    
 }
