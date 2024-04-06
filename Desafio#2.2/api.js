@@ -36,36 +36,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Api = void 0;
 var axios_1 = require("axios");
-var Api = /** @class */ (function () {
-    function Api() {
-    }
-    Api.prototype.get_api = function (moeda) {
-        return __awaiter(this, void 0, void 0, function () {
-            var minha_key, rota, response, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        minha_key = "/0a5f91d54f839d23fd76fd6e";
-                        rota = "https://v6.exchangerate-api.com/v6/".concat(minha_key, "/latest/").concat(moeda);
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, axios_1.default.get(rota)];
-                    case 2:
-                        response = _a.sent();
-                        console.log(response.data); // Exibe os dados da resposta
-                        return [3 /*break*/, 4];
-                    case 3:
-                        error_1 = _a.sent();
-                        console.error(error_1); // Trata erros caso ocorram
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
-                }
-            });
+function getExchangeRate() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios_1.default.get('https://v6.exchangerate-api.com/v6/0a5f91d54f839d23fd76fd6e/latest/USD')];
+                case 1:
+                    response = _a.sent();
+                    console.log(response.data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error('Erro ao obter a taxa de câmbio:', error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
         });
-    };
-    return Api;
-}());
-exports.Api = Api;
+    });
+}
+getExchangeRate();
