@@ -5,7 +5,7 @@ export class Api {
     async getCotacao(moedaOrigem: string, moedaDestino: string): Promise<number> {
 
         // Variáveis do método
-        const minha_key: string = '0a5f91d54f839d23fd76fd6e';
+        const minha_key: string = '';
         const rota: string = 'https://v6.exchangerate-api.com/v6/'+minha_key+'/latest/'+moedaOrigem;
         let valor: number;
 
