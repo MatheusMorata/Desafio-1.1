@@ -14,9 +14,8 @@ export class Cadastro {
         this._lista.push(paciente);
     }
 
-    // Obter a lista de pacientes
     get lista(): Paciente[] {
         return this._lista;
     }
-    
+
 }
