@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import { sql } from '../database/db'; // Verifique o caminho do seu arquivo de conexão
 
-class Paciente extends Model {
+export class Paciente extends Model {
   public cpf!: string;
   public nome!: string;
   public dataNascimento!: string;
@@ -27,5 +27,3 @@ Paciente.init({
   sequelize: sql,
   modelName: 'Paciente'
 });
-
-export { Paciente };
