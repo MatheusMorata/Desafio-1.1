@@ -3,7 +3,7 @@ import * as read from 'readline-sync';
 export class MenuPaciente{
 
     Menu():void{
-
+          
         let ativo: number = 0;
         while(ativo != 5){
             console.log("Menu do cadastro de Pacientes");
@@ -16,7 +16,10 @@ export class MenuPaciente{
             console.clear();
             
             if(ativo == 1){
-                console.log('');
+                const cpf: string = read.question('Digite o CPF: ');
+                const nome: string = read.question('Digite o nome: ');
+                const dataNascimento: string = read.question('Digite a data de nascimento: (DD/MM/AAAA)');
+                console.clear();
             }else if(ativo == 2){
                 console.log('');
             }else if(ativo == 3){
