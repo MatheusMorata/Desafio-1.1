@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adicionarPaciente = exports.listarPorCPF = exports.listarPorNome = exports.deletarPaciente = void 0;
+exports.adicionarPaciente = exports.listarPorCPF = exports.listarPorNome = exports.delPaciente = void 0;
 var db_1 = require("../database/db");
 var sequelize_1 = require("sequelize");
 var Paciente = db_1.conexao.define('Paciente', {
@@ -61,15 +61,12 @@ var Paciente = db_1.conexao.define('Paciente', {
 }, {
     timestamps: false // Desativa os campos de timestamp
 });
-// Função para deletar um paciente por ID
-function deletarPaciente(id) {
+function delPaciente(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var paciente, error_1;
+        var paciente;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, Paciente.findByPk(id)];
+                case 0: return [4 /*yield*/, Paciente.findByPk(id)];
                 case 1:
                     paciente = _a.sent();
                     if (!paciente) {
@@ -78,57 +75,33 @@ function deletarPaciente(id) {
                     return [4 /*yield*/, paciente.destroy()];
                 case 2:
                     _a.sent();
-                    return [2 /*return*/, 'Paciente deletado com sucesso.'];
-                case 3:
-                    error_1 = _a.sent();
-                    throw new Error('Erro ao deletar paciente: ' + error_1.message);
-                case 4: return [2 /*return*/];
+                    return [2 /*return*/];
             }
         });
     });
 }
-exports.deletarPaciente = deletarPaciente;
-// Função para listar pacientes ordenados por nome
+exports.delPaciente = delPaciente;
 function listarPorNome() {
     return __awaiter(this, void 0, void 0, function () {
-        var pacientes, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, Paciente.findAll({
-                            order: [['nome', 'ASC']]
-                        })];
-                case 1:
-                    pacientes = _a.sent();
-                    return [2 /*return*/, pacientes];
-                case 2:
-                    error_2 = _a.sent();
-                    throw new Error('Erro ao listar pacientes por nome: ' + error_2.message);
-                case 3: return [2 /*return*/];
+                case 0: return [4 /*yield*/, Paciente.findAll({
+                        order: [['nome', 'ASC']]
+                    })];
+                case 1: return [2 /*return*/, _a.sent()];
             }
         });
     });
 }
 exports.listarPorNome = listarPorNome;
-// Função para listar pacientes ordenados por CPF
 function listarPorCPF() {
     return __awaiter(this, void 0, void 0, function () {
-        var pacientes, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, Paciente.findAll({
-                            order: [['cpf', 'ASC']]
-                        })];
-                case 1:
-                    pacientes = _a.sent();
-                    return [2 /*return*/, pacientes];
-                case 2:
-                    error_3 = _a.sent();
-                    throw new Error('Erro ao listar pacientes por CPF: ' + error_3.message);
-                case 3: return [2 /*return*/];
+                case 0: return [4 /*yield*/, Paciente.findAll({
+                        order: [['cpf', 'ASC']]
+                    })];
+                case 1: return [2 /*return*/, _a.sent()];
             }
         });
     });
@@ -136,30 +109,16 @@ function listarPorCPF() {
 exports.listarPorCPF = listarPorCPF;
 function adicionarPaciente(cpf, nome, dataNascimento) {
     return __awaiter(this, void 0, void 0, function () {
-        var json, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    json = {
+                case 0: return [4 /*yield*/, Paciente.create({
                         cpf: cpf,
                         nome: nome,
                         dataNascimento: dataNascimento
-                    };
-                    _a.label = 1;
+                    })];
                 case 1:
-                    _a.trys.push([1, 4, , 5]);
-                    return [4 /*yield*/, db_1.conexao.sync({ force: true })];
-                case 2:
                     _a.sent();
-                    return [4 /*yield*/, Paciente.create(json)];
-                case 3:
-                    _a.sent();
-                    return [3 /*break*/, 5];
-                case 4:
-                    error_4 = _a.sent();
-                    console.log(error_4);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    return [2 /*return*/];
             }
         });
     });

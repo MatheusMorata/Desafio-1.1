@@ -1,7 +1,15 @@
 import { conexao } from '../database/db';
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 
-const Paciente = conexao.define('Paciente', {
+// Defina uma interface para representar a estrutura de um paciente
+export interface PacienteModel extends Model {
+    id: number;
+    cpf: string;
+    nome: string;
+    dataNascimento: string;
+}
+
+const Paciente = conexao.define<PacienteModel>('Paciente', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -24,56 +32,30 @@ const Paciente = conexao.define('Paciente', {
     timestamps: false // Desativa os campos de timestamp
 });
 
-
-
-// Função para deletar um paciente por ID
-export async function deletarPaciente(id) {
-    try {
-        const paciente = await Paciente.findByPk(id);
-        if (!paciente) {
-            throw new Error('Paciente não encontrado.');
-        }
-        await paciente.destroy();
-        return 'Paciente deletado com sucesso.';
-    } catch (error) {
-        throw new Error('Erro ao deletar paciente: ' + error.message);
+export async function delPaciente(id: number): Promise<void> {
+    const paciente = await Paciente.findByPk(id);
+    if (!paciente) {
+        throw new Error('Paciente não encontrado.');
     }
+    await paciente.destroy();
 }
 
-// Função para listar pacientes ordenados por nome
-export async function listarPorNome() {
-    try {
-        const pacientes = await Paciente.findAll({
-            order: [['nome', 'ASC']]
-        });
-        return pacientes;
-    } catch (error) {
-        throw new Error('Erro ao listar pacientes por nome: ' + error.message);
-    }
+export async function listarPorNome(): Promise<PacienteModel[]> {
+    return await Paciente.findAll<PacienteModel>({
+        order: [['nome', 'ASC']]
+    });
 }
 
-// Função para listar pacientes ordenados por CPF
-export async function listarPorCPF() {
-    try {
-        const pacientes = await Paciente.findAll({
-            order: [['cpf', 'ASC']]
-        });
-        return pacientes;
-    } catch (error) {
-        throw new Error('Erro ao listar pacientes por CPF: ' + error.message);
-    }
+export async function listarPorCPF(): Promise<PacienteModel[]> {
+    return await Paciente.findAll<PacienteModel>({
+        order: [['cpf', 'ASC']]
+    });
 }
 
-export async function adicionarPaciente(cpf: string, nome: string, dataNascimento: string){
-    const json = {
+export async function adicionarPaciente(cpf: string, nome: string, dataNascimento: string) {
+    await Paciente.create<PacienteModel>({
         cpf: cpf,
         nome: nome,
         dataNascimento: dataNascimento
-    }
-    try{
-        await conexao.sync({ force: true }); 
-    await Paciente.create(json);
-    }catch(error){
-        console.log(error);
-    }
+    });
 }

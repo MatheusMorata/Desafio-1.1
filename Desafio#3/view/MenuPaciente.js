@@ -15,16 +15,17 @@ function menuPaciente() {
         ativo = parseInt(read.question(''));
         console.clear();
         if (ativo == 1) {
-            (0, controller_1.cadastrarPaciente)();
+            (0, controller_1.cadastrar)();
         }
         else if (ativo == 2) {
-            console.clear();
+            (0, controller_1.deletar)();
         }
         else if (ativo == 3) {
-            console.clear();
+            var t = (0, controller_1.printNome)();
+            (0, controller_1.teste)(t);
         }
         else if (ativo == 4) {
-            console.clear();
+            (0, controller_1.printCPF)();
         }
         else if (ativo == 5) {
             console.clear();
