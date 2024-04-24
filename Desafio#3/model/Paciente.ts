@@ -24,16 +24,55 @@ const Paciente = conexao.define('Paciente', {
     timestamps: false // Desativa os campos de timestamp
 });
 
+// Função para adicionar um paciente
+export function adicionarPaciente(cpf,nome,dataNascimento) {
+    
+}
 
-export async function criarPaciente(cpf, nome, dataNascimento) {
+// Função para deletar um paciente por ID
+export async function deletarPaciente(id) {
     try {
-        const paciente = await Paciente.create({ cpf, nome, dataNascimento });
-        return paciente;
+        const paciente = await Paciente.findByPk(id);
+        if (!paciente) {
+            throw new Error('Paciente não encontrado.');
+        }
+        await paciente.destroy();
+        return 'Paciente deletado com sucesso.';
     } catch (error) {
-        throw new Error('Erro ao criar paciente: ' + error.message);
+        throw new Error('Erro ao deletar paciente: ' + error.message);
     }
 }
 
-(async () => {
-    await conexao.sync({ force: true }); // Esta linha pode ser movida para o script principal, se necessário
-})();
+// Função para listar pacientes ordenados por nome
+export async function listarPorNome() {
+    try {
+        const pacientes = await Paciente.findAll({
+            order: [['nome', 'ASC']]
+        });
+        return pacientes;
+    } catch (error) {
+        throw new Error('Erro ao listar pacientes por nome: ' + error.message);
+    }
+}
+
+// Função para listar pacientes ordenados por CPF
+export async function listarPorCPF() {
+    try {
+        const pacientes = await Paciente.findAll({
+            order: [['cpf', 'ASC']]
+        });
+        return pacientes;
+    } catch (error) {
+        throw new Error('Erro ao listar pacientes por CPF: ' + error.message);
+    }
+}
+
+async function teste(){
+    try{
+        await conexao.sync({ force: true }); // Esta linha pode ser movida para o script principal, se necessário
+    await Paciente.create({ cpf:'teste2', nome:'teste2', dataNascimento:'teste2' });
+    }catch(error){
+        console.log(error);
+    }
+}
+teste();
