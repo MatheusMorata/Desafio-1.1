@@ -1,6 +1,12 @@
 import { adicionarPaciente, delPaciente, listarPorCPF, listarPorNome, PacienteModel } from '../model/Paciente';
 import * as read from 'readline-sync';
 
+interface Paciente {
+    cpf: string;
+    nome: string;
+    dataNascimento: string;
+}
+
 export function cadastrar(): void{
     const cpf: string = read.question('Digite seu CPF: ');
     const nome: string = read.question('Digite o nome: ');
@@ -13,35 +19,23 @@ export function deletar(): void{
     delPaciente(id);
 }
 
+export async function printNome(){
 
-// Função para imprimir os pacientes listados por nome e retorná-los em um array de objetos
-export async function printNome(): Promise<{ cpf: string, nome: string, dataNascimento: string }[]> {
-    
     try {
         const pacientes = await listarPorNome();
         console.log("Pacientes listados por nome:");
-        
-        const pacientesArray: { cpf: string, nome: string, dataNascimento: string }[] = [];
-
-        pacientes.forEach(paciente => {
-            console.log(`Nome: ${paciente.nome}, CPF: ${paciente.cpf}, Data de Nascimento: ${paciente.dataNascimento}`);
-            pacientesArray.push({ cpf: paciente.cpf, nome: paciente.nome, dataNascimento: paciente.dataNascimento });
+    
+        pacientes.forEach(paciente => {   
+            console.log("CPF: ",paciente.cpf,"\nNome: ",paciente.nome,"\nData Nascimento: ",paciente.dataNascimento);
         });
 
-        return pacientesArray;
     } catch (error) {
         console.error('Erro ao listar pacientes por nome:', error.message);
         return []; // Retorna um array vazio em caso de erro
     }
 }
 
-export function teste(pacientesArray): void {
-    console.log("Dados dos pacientes:");
 
-    pacientesArray.forEach(paciente => {
-        console.log(`Nome: ${paciente.nome}, CPF: ${paciente.cpf}, Data de Nascimento: ${paciente.dataNascimento}`);
-    });
-}
 
 export async function printCPF(): Promise<void> {
     try {

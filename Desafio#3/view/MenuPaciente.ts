@@ -1,6 +1,5 @@
 import * as read from 'readline-sync';
-import {cadastrar, deletar, printCPF, printNome,teste} from '../controller/controller';
-
+import {cadastrar, deletar, printCPF, printNome} from '../controller/controller';
 
 export function menuPaciente():void {
     let ativo: number = 0;
@@ -22,8 +21,7 @@ export function menuPaciente():void {
         }else if(ativo == 2){
             deletar();
         }else if(ativo == 3){
-            const t = printNome();
-            teste(t);
+            printNome();
         }else if(ativo == 4){
             printCPF();
         }else if(ativo == 5){

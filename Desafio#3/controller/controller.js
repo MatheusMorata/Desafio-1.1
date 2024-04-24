@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.printCPF = exports.teste = exports.printNome = exports.deletar = exports.cadastrar = void 0;
+exports.printCPF = exports.printNome = exports.deletar = exports.cadastrar = void 0;
 var Paciente_1 = require("../model/Paciente");
 var read = require("readline-sync");
 function cadastrar() {
@@ -51,10 +51,9 @@ function deletar() {
     (0, Paciente_1.delPaciente)(id);
 }
 exports.deletar = deletar;
-// Função para imprimir os pacientes listados por nome e retorná-los em um array de objetos
 function printNome() {
     return __awaiter(this, void 0, void 0, function () {
-        var pacientes, pacientesArray_1, error_1;
+        var pacientes, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -63,12 +62,10 @@ function printNome() {
                 case 1:
                     pacientes = _a.sent();
                     console.log("Pacientes listados por nome:");
-                    pacientesArray_1 = [];
                     pacientes.forEach(function (paciente) {
-                        console.log("Nome: ".concat(paciente.nome, ", CPF: ").concat(paciente.cpf, ", Data de Nascimento: ").concat(paciente.dataNascimento));
-                        pacientesArray_1.push({ cpf: paciente.cpf, nome: paciente.nome, dataNascimento: paciente.dataNascimento });
+                        console.log("CPF: ", paciente.cpf, "\nNome: ", paciente.nome, "\nData Nascimento: ", paciente.dataNascimento);
                     });
-                    return [2 /*return*/, pacientesArray_1];
+                    return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
                     console.error('Erro ao listar pacientes por nome:', error_1.message);
@@ -79,13 +76,6 @@ function printNome() {
     });
 }
 exports.printNome = printNome;
-function teste(pacientesArray) {
-    console.log("Dados dos pacientes:");
-    pacientesArray.forEach(function (paciente) {
-        console.log("Nome: ".concat(paciente.nome, ", CPF: ").concat(paciente.cpf, ", Data de Nascimento: ").concat(paciente.dataNascimento));
-    });
-}
-exports.teste = teste;
 function printCPF() {
     return __awaiter(this, void 0, void 0, function () {
         var pacientes, error_2;

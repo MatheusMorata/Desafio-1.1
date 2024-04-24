@@ -21,8 +21,7 @@ function menuPaciente() {
             (0, controller_1.deletar)();
         }
         else if (ativo == 3) {
-            var t = (0, controller_1.printNome)();
-            (0, controller_1.teste)(t);
+            (0, controller_1.printNome)();
         }
         else if (ativo == 4) {
             (0, controller_1.printCPF)();
