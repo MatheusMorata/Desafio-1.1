@@ -36,8 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.printCPF = exports.printNome = exports.deletar = exports.cadastrar = void 0;
+exports.agendarConsulta = exports.printCPF = exports.printNome = exports.deletar = exports.cadastrar = void 0;
 var Paciente_1 = require("../model/Paciente");
+var Agenda_1 = require("../model/Agenda");
 var read = require("readline-sync");
 function cadastrar() {
     var cpf = read.question('Digite seu CPF: ');
@@ -101,3 +102,31 @@ function printCPF() {
     });
 }
 exports.printCPF = printCPF;
+function agendarConsulta() {
+    return __awaiter(this, void 0, void 0, function () {
+        var idPaciente, dataConsulta, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    idPaciente = parseInt(read.question('Digite o ID do paciente para agendar a consulta: '));
+                    dataConsulta = read.question('Digite a data da consulta (DD/MM/AAAA): ');
+                    return [4 /*yield*/, Agenda_1.Agendamento.create({
+                            inicio: dataConsulta,
+                            fim: dataConsulta,
+                            id_paciente: idPaciente,
+                        })];
+                case 1:
+                    _a.sent();
+                    console.log("Consulta agendada para o paciente com ID ".concat(idPaciente, " na data ").concat(dataConsulta));
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error('Erro ao agendar consulta:', error_3.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.agendarConsulta = agendarConsulta;

@@ -1,4 +1,5 @@
 import * as read from 'readline-sync';
+import { agendarConsulta, cancelarConsulta, listarAgenda } from '../controller/controller';
 
 export function menuAgenda(): void{
     let ativo: number = 0;
@@ -13,11 +14,11 @@ export function menuAgenda(): void{
         console.clear();
 
         if(ativo == 1){ 
-            console.clear();
+            agendarConsulta();
         }else if(ativo == 2){
-            console.clear
+            cancelarConsulta();
         }else if(ativo == 3){
-            console.clear();
+            listarAgenda();
         }else if(ativo == 4){
             console.clear();
         }else{

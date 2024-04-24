@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.menuAgenda = void 0;
 var read = require("readline-sync");
+var controller_1 = require("../controller/controller");
 function menuAgenda() {
     var ativo = 0;
     while (ativo != 4) {
@@ -13,7 +14,7 @@ function menuAgenda() {
         ativo = parseInt(read.question(''));
         console.clear();
         if (ativo == 1) {
-            console.clear();
+            (0, controller_1.agendarConsulta)();
         }
         else if (ativo == 2) {
             console.clear;
