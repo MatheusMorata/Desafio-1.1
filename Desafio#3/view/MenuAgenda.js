@@ -17,10 +17,10 @@ function menuAgenda() {
             (0, controller_1.agendarConsulta)();
         }
         else if (ativo == 2) {
-            console.clear;
+            (0, controller_1.cancelarConsulta)();
         }
         else if (ativo == 3) {
-            console.clear();
+            (0, controller_1.listarAgenda)();
         }
         else if (ativo == 4) {
             console.clear();

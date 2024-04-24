@@ -36,14 +36,60 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.agendarConsulta = exports.printCPF = exports.printNome = exports.deletar = exports.cadastrar = void 0;
+exports.listarAgenda = exports.cancelarConsulta = exports.agendarConsulta = exports.printCPF = exports.printNome = exports.deletar = exports.cadastrar = void 0;
 var Paciente_1 = require("../model/Paciente");
 var Agenda_1 = require("../model/Agenda");
 var read = require("readline-sync");
+function validarCPF(cpf) {
+    cpf = cpf.replace(/\D/g, '');
+    if (cpf.length !== 11) {
+        return false;
+    }
+    if (/^(\d)\1+$/.test(cpf)) {
+        return false;
+    }
+    var soma = 0;
+    for (var i = 0; i < 9; i++) {
+        soma += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    var resto = soma % 11;
+    var digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
+    if (parseInt(cpf.charAt(9)) !== digitoVerificador1) {
+        return false;
+    }
+    soma = 0;
+    for (var i = 0; i < 10; i++) {
+        soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    resto = soma % 11;
+    var digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
+    if (parseInt(cpf.charAt(10)) !== digitoVerificador2) {
+        return false;
+    }
+    return true;
+}
 function cadastrar() {
+    // Solicita os dados do paciente
     var cpf = read.question('Digite seu CPF: ');
     var nome = read.question('Digite o nome: ');
-    var dataNascimento = read.question('Digite a data de nascimento: (DD/MM/AAAA)');
+    var dataNascimento = read.question('Digite a data de nascimento (DD/MM/AAAA): ');
+    // Verifica se o CPF é válido
+    if (!validarCPF(cpf)) {
+        console.error('CPF inválido. Por favor, insira um CPF válido.');
+        return;
+    }
+    // Verifica se o nome possui pelo menos 5 caracteres
+    if (nome.length < 5) {
+        console.error('O nome deve ter pelo menos 5 caracteres.');
+        return;
+    }
+    // Verifica se a data de nascimento está no formato correto
+    var dataNascimentoRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (!dataNascimento.match(dataNascimentoRegex)) {
+        console.error('Formato de data de nascimento inválido. Use o formato DD/MM/AAAA.');
+        return;
+    }
+    // Adiciona o paciente apenas se todas as verificações passarem
     (0, Paciente_1.adicionarPaciente)(cpf, nome, dataNascimento);
 }
 exports.cadastrar = cadastrar;
@@ -130,3 +176,61 @@ function agendarConsulta() {
     });
 }
 exports.agendarConsulta = agendarConsulta;
+function cancelarConsulta() {
+    return __awaiter(this, void 0, void 0, function () {
+        var idAgendamento, agendamento, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    idAgendamento = parseInt(read.question('Digite o ID do agendamento para cancelar: '));
+                    return [4 /*yield*/, Agenda_1.Agendamento.findByPk(idAgendamento)];
+                case 1:
+                    agendamento = _a.sent();
+                    // Verifica se o agendamento existe
+                    if (!agendamento) {
+                        console.log('Agendamento não encontrado.');
+                        return [2 /*return*/];
+                    }
+                    // Remove o agendamento do banco de dados
+                    return [4 /*yield*/, agendamento.destroy()];
+                case 2:
+                    // Remove o agendamento do banco de dados
+                    _a.sent();
+                    console.log("Agendamento cancelado com sucesso.");
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error('Erro ao cancelar agendamento:', error_4.message);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.cancelarConsulta = cancelarConsulta;
+function listarAgenda() {
+    return __awaiter(this, void 0, void 0, function () {
+        var agenda, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, Agenda_1.Agendamento.findAll()];
+                case 1:
+                    agenda = _a.sent();
+                    console.log("Agenda de consultas:");
+                    agenda.forEach(function (item) {
+                        console.log("ID: ".concat(item.id, ", In\u00EDcio: ").concat(item.inicio, ", Fim: ").concat(item.fim, ", ID do Paciente: ").concat(item.id_paciente));
+                    });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    console.error('Erro ao listar agenda:', error_5.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.listarAgenda = listarAgenda;
