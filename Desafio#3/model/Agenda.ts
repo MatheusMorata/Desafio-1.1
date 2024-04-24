@@ -3,8 +3,8 @@ import { DataTypes, Model, Optional } from "sequelize";
 
 interface AgendamentoAttributes {
   id: number;
-  inicio: Date;
-  fim: Date;
+  inicio: string; // Alterado para string
+  fim: string; // Alterado para string
   id_paciente: number;
 }
 
@@ -12,8 +12,8 @@ interface AgendamentoCreationAttributes extends Optional<AgendamentoAttributes, 
 
 class Agendamento extends Model<AgendamentoAttributes, AgendamentoCreationAttributes> implements AgendamentoAttributes {
   public id!: number;
-  public inicio!: Date;
-  public fim!: Date;
+  public inicio!: string; // Alterado para string
+  public fim!: string; // Alterado para string
   public id_paciente!: number;
 
   public readonly createdAt!: Date;
@@ -29,11 +29,11 @@ Agendamento.init(
       autoIncrement: true,
     },
     inicio: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING, // Alterado para STRING
       allowNull: false,
     },
     fim: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING, // Alterado para STRING
       allowNull: false,
     },
     id_paciente: {

@@ -1,4 +1,4 @@
-import { adicionarPaciente, delPaciente, listarPorCPF, listarPorNome, PacienteModel } from '../model/Paciente';
+import { adicionarPaciente, delPaciente, listarPorCPF, listarPorNome} from '../model/Paciente';
 import * as read from 'readline-sync';
 
 interface Paciente {
