@@ -24,10 +24,7 @@ const Paciente = conexao.define('Paciente', {
     timestamps: false // Desativa os campos de timestamp
 });
 
-// Função para adicionar um paciente
-export function adicionarPaciente(cpf,nome,dataNascimento) {
-    
-}
+
 
 // Função para deletar um paciente por ID
 export async function deletarPaciente(id) {
@@ -67,12 +64,16 @@ export async function listarPorCPF() {
     }
 }
 
-async function teste(){
+export async function adicionarPaciente(cpf: string, nome: string, dataNascimento: string){
+    const json = {
+        cpf: cpf,
+        nome: nome,
+        dataNascimento: dataNascimento
+    }
     try{
-        await conexao.sync({ force: true }); // Esta linha pode ser movida para o script principal, se necessário
-    await Paciente.create({ cpf:'teste2', nome:'teste2', dataNascimento:'teste2' });
+        await conexao.sync({ force: true }); 
+    await Paciente.create(json);
     }catch(error){
         console.log(error);
     }
 }
-teste();
